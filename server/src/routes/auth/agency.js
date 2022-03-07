@@ -1,11 +1,10 @@
 const express= require('express');
 const {
-    signToken,
-    verifyToken,
-}= require('../../utils/jwt');
+    signin,
+}= require('../../controllers/auth/agency')
 
 const router= express.Router();
 
-router.post('/signin'); // username and password
+router.post('/signin', signin); // username and password
 
 module.exports= router;

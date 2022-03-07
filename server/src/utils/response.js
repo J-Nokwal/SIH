@@ -13,7 +13,7 @@ module.exports= {
             data: {}
         });
     },
-    basRequestErrorResponse: (res, message)=> {
+    badRequestErrorResponse: (res, message)=> {
         return res.status(400).json({
             error: true,
             message: message,

@@ -6,6 +6,7 @@ const userSchema= new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -14,7 +15,7 @@ const userSchema= new mongoose.Schema({
     tokenPayload: {
         type: Object,
         default: null
-    },
+    }, // important
     role: {
         type: String,
         required: true,
