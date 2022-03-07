@@ -5,12 +5,22 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./views/Home/Home";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
+import LoginPage from "./views/Home/Government/LoginPage/LoginPage";
+import LoginPage1 from "./views/Home/University/LoginPage/LoginPage";
 ReactDOM.render(
-  <div>
+  <div
+    style={{
+      fontFamily: "'Barlow', sans-serif",
+      fontFamily: "'Fira Sans', sans-serif",
+      fontFamily: "'Fredoka', sans-serif",
+      fontFamily: "'Montserrat', sans-serif",
+    }}
+  >
     <BrowserRouter>
       <Switch>
         <Route exact path="/home" component={Home} />
+        <Route exact path="/govtlogin" component={LoginPage} />
+        <Route exact path="/unilogin" component={LoginPage1} />
         <Redirect from="/" to="/home" />
       </Switch>
     </BrowserRouter>
