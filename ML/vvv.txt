@@ -1,0 +1,78 @@
+{
+  "THAPAR": {
+    "institueName": "Thapar Institute of Engineering",
+        "institueLocation": "Patiala, Punjab",
+        "institueType": "Private/Engineering",
+        "institueWebsite": "http://www.thapar.edu/",
+        "institueAdminEmail": "admin@thapar.edu",
+        "state": "Punjab",
+    "coursesOffered": [
+            "B.E./ Computer Science & Engineering",
+            "B.E./ Electronics & Communication Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Electrical & Electronics Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Civil Engineering",
+            "B.E./ Mechanical Engineering",
+            "M.E./ Computer Science & Engineering",
+            "M.E./ Electronics & Communication Engineering",
+            "M.E./ Mechanical Engineering"
+        ],
+    "institueImage": "https://www.thapar.edu/sites/default/files/styles/thapar_logo_style/public/logo/thapar_logo.png?itok=Q-8_5_Qz",
+    "students": repeat(5,{
+      "{{random(101910001,101919999)}}": {
+                "firstName": firstname(),
+                "middleName": firstname(),
+                "lastName": lastname(),
+                "gender": choice('MALE','FEMALE'),
+                "category": choice('GEN','OBC','PWD','SC','ST'),
+                "instituteEmail": expression("{{firstName}}.{{lastName}}_be19@thapar.edu"),
+                "personalEmail": expression("{{firstName}}.{{lastName}}@gmail.com"),
+                "phone": random(9999990001,9999999999),
+                "address": {
+                    "house": "#121-F Gandhi Nagar, Chandigarh-160012",
+                    "city": "Chandigarh",
+                    "state": "Punjab",
+                    "country": "India",
+                    "zip": "160012"
+                },
+                "course": choice("{{coursesOffered}}"),
+                "courseType": "Engineering",
+                "isActive": true,
+                "startYear": "2019",
+                "endYear": "2023",
+                "courseDuration": "4",
+                "courseDurationType": "Years",
+                "currentSemester": choice('1','2','3','4','5','6','7','8'),
+                "currentCGPA": randomFloat(1,10,3),
+                "totalCredits": "160",
+                "totalCreditsEarned": "108",
+                "courseStatus": "ongoing"
+            },
+    }),
+  },
+  "random float": randomFloat(1, 100, 3),
+  "bool": randomBool(),
+  "date": date('Y-m-d', '1980-01-01', '2000-01-15'),
+  "regEx": regex(/hello+ (world|to you)/),
+  "enum": choice('json', 'generator', 'online'),
+  "firstname": firstname(),
+  "lastname": lastname(),
+  "city": city(),
+  "country": country(),
+  "countryCode": countryCode(),
+  "email uses current data": function () {
+    	return this.firstname + '.' + this.lastname + '@gmail.com'; 
+  },
+  "email from expression": expression("{{firstname}}.{{lastname}}@yopmail.com"),
+  "array": repeat(5, firstname()),
+  "array of objects": 
+	  repeat(3, {
+			"index": index(),
+			"index start at 5": index(5)
+      }),
+  "{{firstname()}}": {
+    "age": random(18, 100)
+  }
+}

@@ -1,0 +1,55 @@
+{
+    "THAPAR": {
+        "institueName": "Thapar Institute of Engineering",
+        "institueLocation": "Patiala, Punjab",
+        "institueType": "Private/Engineering",
+        "institueWebsite": "http://www.thapar.edu/",
+        "institueAdminEmail": "admin@thapar.edu",
+        "state": "Punjab",
+        "coursesOffered": [
+            "B.E./ Computer Science & Engineering",
+            "B.E./ Electronics & Communication Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Electrical & Electronics Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Electronics & Instrumentation Engineering",
+            "B.E./ Civil Engineering",
+            "B.E./ Mechanical Engineering",
+            "M.E./ Computer Science & Engineering",
+            "M.E./ Electronics & Communication Engineering",
+            "M.E./ Mechanical Engineering"
+        ],
+        "institueImage": "https://www.thapar.edu/sites/default/files/styles/thapar_logo_style/public/logo/thapar_logo.png?itok=Q-8_5_Qz",
+        "students": {
+            "101917162": {
+                "firstName": "Pranav",
+                "middleName": "",
+                "lastName": "Vohra",
+                "gender": "MALE",
+                "category": "GEN",
+                "instituteEmail": "pvohra_be19@thapar.edu",
+                "personalEmail": "pranavvohra2000@gmail.com",
+                "phone": "7009395354",
+                "address": {
+                    "house": "#121-F Gandhi Nagar, Chandigarh-160012",
+                    "city": "Chandigarh",
+                    "state": "Punjab",
+                    "country": "India",
+                    "zip": "160012"
+                },
+                "course": "B.E./ Computer Science & Engineering",
+                "courseType": "Engineering",
+                "isActive": true,
+                "startYear": "2019",
+                "endYear": "2023",
+                "courseDuration": "4",
+                "courseDurationType": "Years",
+                "currentSemester": "6",
+                "currentCGPA": "7.94",
+                "totalCredits": "160",
+                "totalCreditsEarned": "108",
+                "courseStatus": "ongoing"
+            }
+        }
+    }
+}
