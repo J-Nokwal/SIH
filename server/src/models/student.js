@@ -95,6 +95,14 @@ const studentSchema= new mongoose.Schema({
         default: null,
         enum: ["ongoing", "completed", "dropped"],
     },
+    starredOpportunities: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Opportunity',
+    }],
+    enrolledOpportunities: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Opportunity',
+    }],
     isVerified: {
         type: Boolean,
         default: false,
