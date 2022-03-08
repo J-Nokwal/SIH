@@ -16,6 +16,7 @@ const studentSchema= new mongoose.Schema({
     category: {
         type: String,
         enum: ["GEN", "OBC", "SC", "ST", "GEN/EWS"],
+        default: "GEN"
     },
     phone: {
         type: String,
