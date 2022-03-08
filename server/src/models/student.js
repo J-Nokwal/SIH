@@ -104,6 +104,9 @@ const studentSchema= new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Opportunity',
     }],
+    familyIncome: {
+        type: Number,
+    },
     isVerified: {
         type: Boolean,
         default: false,
