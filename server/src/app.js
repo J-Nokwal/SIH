@@ -11,4 +11,7 @@ app.get('/', (req, res)=> {
     res.send("Hello world");
 })
 
+app.use('/api', require('./routes/api'));
+app.use('/auth', require('./routes/auth'));
+
 module.exports= app;
