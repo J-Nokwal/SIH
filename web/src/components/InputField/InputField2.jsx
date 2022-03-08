@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputField = ({ value, onChange, text, icon, type }) => {
+const InputField2 = ({ value, onChange, text, icon, type }) => {
   return (
     <div>
       <div>
@@ -12,7 +12,7 @@ const InputField = ({ value, onChange, text, icon, type }) => {
 
           <input
             style={{ fontSize: "20px" }}
-            className=" bg-input placeholder-white px-16 rounded-md   pr-16 py-3 "
+            className=" bg-white border-coolGray border-2 placeholder-coolGray px-16 rounded-md   pr-5 py-3 "
             placeholder={text}
             type={type}
             value={value}
@@ -24,4 +24,4 @@ const InputField = ({ value, onChange, text, icon, type }) => {
   );
 };
 
-export default InputField;
+export default InputField2;

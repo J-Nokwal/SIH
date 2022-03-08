@@ -13,6 +13,8 @@ import Enterbutton from "../../../../components/Buttons/mainbutton/Enterbutton";
 const LoginPage = () => {
   const arr = ["ten", "twenty", "thrity", "fourty", "fifty"];
   const [Agency, setAgency] = useState("");
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
   return (
     <div>
       <div className="grid  grid-cols-2 ">
@@ -53,11 +55,23 @@ const LoginPage = () => {
             </div>
             <br />
             <div className="mt-124">
-              <InputField icon={Homeicon} text={"Username"} />
+              <InputField
+                icon={Homeicon}
+                type="text"
+                text={"Username"}
+                onChange={(e) => setusername(e.target.value)}
+                value={username}
+              />
 
               <br />
               <br />
-              <InputField icon={Passwordicon} text={"Password"} />
+              <InputField
+                icon={Passwordicon}
+                type="password"
+                text={"Password"}
+                onChange={(e) => setpassword(e.target.value)}
+                value={password}
+              />
             </div>
             <div className="mt-14 ml-17">
               <Enterbutton text={"Enter"} />

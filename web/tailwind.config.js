@@ -185,6 +185,7 @@ module.exports = {
         EDEEF0: "#EDEEF0",
         C6CEDA: "#C6CEDA",
         EED202: "#EED202",
+        hcolor: "#F3F2FC",
         fffcfc: "#fafbfd",
         E5E5E5: "#E5E5E5",
         F6FFF: "#8F6FFF",

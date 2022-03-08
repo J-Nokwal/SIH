@@ -1,0 +1,7 @@
+li.MuiListItem-root {
+  @apply py-0;
+}
+hr.MuiDivider-root {
+  @apply bg-primaryNormal;
+  @apply w-auto;
+}

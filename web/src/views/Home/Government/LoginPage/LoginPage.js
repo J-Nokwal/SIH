@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 import InputField from "../../../../components/InputField/Input/InputField";
 import Passwordicon from "../../../../assets/Passwordicon.svg";
 import Accessicon from "../../../../assets/Accesicon.svg";
+
 import Dropdowncomponent from "../../../../components/Dropdown/Dropdown-component";
 import Enterbutton from "../../../../components/Buttons/mainbutton/Enterbutton";
 const LoginPage = () => {
   const arr = ["ten", "twenty", "thrity", "fourty", "fifty"];
   const [Agency, setAgency] = useState("");
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
   return (
     <div>
       <div className="grid  grid-cols-2 ">
@@ -53,11 +56,23 @@ const LoginPage = () => {
             </div>
             <br />
             <div className="mt-124">
-              <InputField icon={Homeicon} text={"Username"} />
+              <InputField
+                icon={Homeicon}
+                type="text"
+                onChange={(e) => setusername(e.target.value)}
+                value={username}
+                text={"Username"}
+              />
 
               <br />
               <br />
-              <InputField icon={Passwordicon} text={"Password"} />
+              <InputField
+                icon={Passwordicon}
+                type="password"
+                onChange={(e) => setpassword(e.target.value)}
+                value={password}
+                text={"Password"}
+              />
             </div>
             <div className="mt-14 ml-17">
               <Enterbutton text={"Enter"} />

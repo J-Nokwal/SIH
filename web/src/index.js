@@ -7,6 +7,8 @@ import Home from "./views/Home/Home";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import LoginPage from "./views/Home/Government/LoginPage/LoginPage";
 import LoginPage1 from "./views/Home/University/LoginPage/LoginPage";
+import Govt from "./views/Home/Government/Govt";
+import University from "./views/Home/University/University";
 ReactDOM.render(
   <div
     style={{
@@ -21,7 +23,9 @@ ReactDOM.render(
         <Route exact path="/home" component={Home} />
         <Route exact path="/govtlogin" component={LoginPage} />
         <Route exact path="/unilogin" component={LoginPage1} />
-        <Redirect from="/" to="/home" />
+        <Route path="/govt" component={Govt} />
+        <Route path="/uni" component={University} />
+        <Redirect exact from="/" to="/home" />
       </Switch>
     </BrowserRouter>
   </div>,
