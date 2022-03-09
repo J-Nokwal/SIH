@@ -14,7 +14,10 @@ const {
 const getApplicants= async (req, res) => {
     try {
         var oppId= req.params.id;
-        var opp= await getOpportunityByQueryPopulate({ _id: oppId });
+        var [opp, err]= await getOpportunityByQueryPopulate({ _id: oppId });
+        if (err) {
+            return notFoundErrorResponse(res, err.message);
+        }
         return successResponse(res, 'Applicants listed successfully', opp.applicants);
     } catch (error) {
         console.log(`Error : ${error.message}`);
@@ -25,7 +28,10 @@ const getApplicants= async (req, res) => {
 const viewOpportunity= async (req, res) => {
     try {
         var oppId= req.params.id;
-        var opp= await getOpportunityByQuery({ _id: oppId });
+        var [opp, err]= await getOpportunityByQuery({ _id: oppId });
+        if (err) {
+            return notFoundErrorResponse(res, 'Opportunity not found');
+        }
         return successResponse(res, 'Opportunity listed successfully', opp);
     } catch (error) {
         console.log(`Error : ${error.message}`);
@@ -35,7 +41,10 @@ const viewOpportunity= async (req, res) => {
 
 const listOpportunities= async (req, res) => {
     try {
-        var opps= await getOpportunitiesByQuery(req.body.filter);
+        var [opps, err]= await getOpportunitiesByQuery(req.body.filter);
+        if (err) {
+            return serverErrorResponse(res, err.message);
+        }
         return successResponse(res, 'Opportunities listed successfully', opps);
     } catch (error) {
         console.log(`Error : ${error.message}`);
@@ -45,7 +54,11 @@ const listOpportunities= async (req, res) => {
 
 const createOpportunityController= async (req, res) => {
     try {
-        var opp= await createOpportunity(req.body);
+        req.body.organization= req.user.agencyCode;
+        var [opp, err]= await createOpportunity(req.body);
+        if (err) {
+            return badRequestErrorResponse(res, err.message);
+        }
         return successResponse(res, 'Opportunity created successfully', opp);
     } catch (error) {
         console.log(`Error : ${error.message}`);

@@ -16,7 +16,8 @@ const listInstitutions= async (req, res)=> {
     try{
         var query= {}
         if(req.method==='POST')
-            query= req.filter;
+            query= req.body.filter;
+        console.log(query);
         var [institutes, err]= await getInstitutesByQuery(query);
         if(err)
             return serverErrorResponse(res, err);

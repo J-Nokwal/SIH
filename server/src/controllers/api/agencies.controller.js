@@ -16,7 +16,7 @@ const listAgencies= async (req, res)=> {
     try{
         var query= {}
         if(req.method==='POST')
-            query= req.filter;
+            query= req.body.filter;
         var [agencies, err]= await getAgenciesByQuery(query);
         if(err)
             return serverErrorResponse(res, err);

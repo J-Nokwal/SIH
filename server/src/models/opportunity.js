@@ -28,22 +28,20 @@ const opportunitySchema= new mongoose.Schema({
         enum: opportunityEnum,
     },
     stipened: {
-        type: String,
-        default: "N.A.",
+        type: Number,
+        default: 0,
     },
     start: {
         type: Date,
-        required: true,
     },
     end: {
         type: Date,
-        required: true,
     },
     registrationStatus: {
         type: String,
         required: true,
         enum: opportunityRegistrationStatusEnum,
-        default: "To be announced",
+        default: "Open",
     },
     criteriaFilter: {
         type: Object,
