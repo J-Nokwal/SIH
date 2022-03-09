@@ -79,7 +79,7 @@ class SignInScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/images/copyWriteResers.png"),
+                  Image.asset("assets/images/copyWriteReservs.png"),
                   const SizedBox(width: 10),
                   const Text("All Rights Reserved")
                 ],
