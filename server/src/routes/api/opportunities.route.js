@@ -2,6 +2,7 @@ const {
     getApplicants,
     viewOpportunity,
     listOpportunities,
+    createOpportunityController
 }= require('../../controllers/api/opportunities.controller')
 const express= require('express');
 
@@ -14,5 +15,7 @@ router.get('/getApplicants/:id', getApplicants); // opportunity id
 router.get('/viewOpportunity/:id', viewOpportunity); // opportunity id
 
 router.post('/listOpportunities', listOpportunities); // relevant to student, filter 
+
+router.post('/createOpportunity', createOpportunityController); 
 
 module.exports= router;

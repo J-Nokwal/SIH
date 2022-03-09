@@ -10,7 +10,8 @@ const {
 }= require('../../utils/response');
 const {
     getUserByQuery,
-    createUser
+    createUser,
+    updateUser
 }= require('../../repository/user.repository');
 const {
     createStudent,
@@ -35,8 +36,11 @@ const signin= async (req, res)=> {
         if (err) {
             return notFoundErrorResponse(res, 'Agency not found');
         }
-        var isValid= await comparePassword(password, user.password);
-        if (!isValid) {
+        // var isValid= await comparePassword(password, user.password);
+        // if (!isValid) {
+        //     return unauthorizedErrorResponse(res, 'Invalid password');
+        // }
+        if (req.body.password != user.password) {
             return unauthorizedErrorResponse(res, 'Invalid password');
         }
         var token= signToken(user.tokenPayload);
@@ -111,6 +115,7 @@ const reloadAadhaarCaptcha= async (req, res)=> {
 }
 
 const fillAadhaar= async (req, res)=> {
+    /*
     try {
         var url = `${onboardingURL}/otp`;
         var {
@@ -148,9 +153,17 @@ const fillAadhaar= async (req, res)=> {
         console.log("ERROR: ", error.response.data);
         return serverErrorResponse(res, error.response.data)
     }
+    */
+   try {
+       return successResponse(res, "OTP generated successfully", {});
+   } catch (error) {
+        console.log("ERROR: ", error.response.data);
+        return serverErrorResponse(res, error.response.data)
+   }
 }
 
 const verifyAadhaar= async (req, res)=> {
+    /*
     try {
         var url = `${onboardingURL}/otp/validate`;
         var {
@@ -193,7 +206,7 @@ const verifyAadhaar= async (req, res)=> {
             F: "FEMALE"
         }
         // create user with the role student
-        /*
+        // ----------------------------------------------
         var [err1, _1] = await updateUserRepo(req.body.uid, {
             onboardingStatus: "kyc",
             dob: decentroResponse.data.data.proofOfIdentity.dob,
@@ -206,7 +219,7 @@ const verifyAadhaar= async (req, res)=> {
             console.log("ERROR: ", err1.message);
             return serverErrorResponse(res, err1.message);
         }
-        */
+        // ------------------------------------------
         var pass= await hashPassword(req.body.password);
         var obj= _generateUserObject(req.body.username, pass);
         var [newUser, err1]= await createUserRepo(obj);
@@ -238,6 +251,53 @@ const verifyAadhaar= async (req, res)=> {
     } catch (error) {
         console.log("ERROR: ", error.response.data);
         serverErrorResponse(res, error.response.data)
+    }
+    */
+    try {
+        // create user with the role student
+        var obj= _generateUserObject(req.body.username, req.body.password);
+        var [newUser, err1]= await createUserRepo(obj);
+        if (err1) {
+            console.log("ERROR: ", err1.message);
+            return serverErrorResponse(res, err1.message);
+        }
+        // create student object
+        var name= {
+            first: "Pranav",
+            middle: "",
+            last: "Vohra"
+        }
+        var address= {
+            addressLine1: "",
+            city: "Patiala",
+            state: "Punjab",
+        }
+        obj= _generateStudentObject(name, address, "Punjab", newUser._id, "MALE")
+        var [newStudent, err2]= await createStudent(obj);
+        if (err2) {
+            console.log("ERROR: ", err2.message);
+            return serverErrorResponse(res, err2.message);
+        }
+        // update user tokenPayload
+        var [updatedUser, err3]= await updateUser({
+            tokenPayload: {
+                username: req.body.username,
+                role: "student",
+                studentId: newStudent._id,
+                userId: newUser._id
+            }
+        })
+        if (err3) {
+            console.log("ERROR: ", err3.message);
+            return serverErrorResponse(res, err3.message);
+        }
+        var accessToken= signToken(updatedUser.tokenPayload)
+        return successResponse(res, 'User created successfully ', {
+            accessToken: accessToken
+        });
+    } catch (error) {
+        console.log("ERROR: ", error.message);
+        serverErrorResponse(res, error.message)
     }
 }
 

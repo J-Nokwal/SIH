@@ -23,8 +23,11 @@ const signin= async (req, res)=> {
         if (err) {
             return notFoundErrorResponse(res, 'Agency not found');
         }
-        var isValid= await comparePassword(password, user.password);
-        if (!isValid) {
+        // var isValid= await comparePassword(password, user.password);
+        // if (!isValid) {
+        //     return unauthorizedErrorResponse(res, 'Invalid password');
+        // }
+        if (user.password != req.body.password) {
             return unauthorizedErrorResponse(res, 'Invalid password');
         }
         var token= signToken(user.tokenPayload);

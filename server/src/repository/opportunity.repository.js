@@ -52,10 +52,21 @@ const deleteOpportunity = async (query = {}) => {
     }
 }
 
+const getOpportunityByQueryPopulate = async (query = {}) => {
+    try {
+        var opportunity = Opportunity.findOne(query).populate('applicants');
+        return [JSON.parse(JSON.stringify(opportunity)), null];
+    } catch (error) {
+        console.log(`Server error : ${error.message}`);
+        return [null, error.message];
+    }
+}
+
 module.exports= {
     createOpportunity,
     getOpportunitiesByQuery,
     getOpportunityByQuery,
     updateOpportunity,
     deleteOpportunity,
+    getOpportunityByQueryPopulate
 }

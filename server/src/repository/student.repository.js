@@ -52,10 +52,34 @@ const deleteStudent= async (query= {})=> {
     }
 }
 
+const getStudentByQueryPopulate= async (query= {})=> {
+    try {
+        // populate enrolledOpportunities, starredOpportunities
+        var student= Student.findOne(query).populate('enrolledOpportunities').populate('starredOpportunities');
+        return [JSON.parse(JSON.stringify(student)), null];
+    } catch (error) {
+        console.log(`Server error : ${error.message}`);
+        return [null, error.message];
+    }
+}
+
+const addEnrolledOpportunity= async (studentId, opportunityId)=> {
+    try {
+        var student= await Student.findById(studentId);
+        student.enrolledOpportunities.push(opportunityId);
+        await student.save();
+        return [JSON.parse(JSON.stringify(student)), null];
+    } catch (error) {
+        console.log(`Server error : ${error.message}`);
+        return [null, error.message];
+    }
+}
 module.exports= {
     createStudent,
     getStudentsByQuery,
     getStudentByQuery,
     updateStudent,
     deleteStudent,
+    getStudentByQueryPopulate,
+    addEnrolledOpportunity
 }

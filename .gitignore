@@ -4,3 +4,4 @@ demo.*
 dist.*
 .env
 sample.*
+scripts/

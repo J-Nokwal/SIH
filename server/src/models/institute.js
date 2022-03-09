@@ -15,6 +15,9 @@ const institutionSchema= new mongoose.Schema({
         required: true,
         unique: true,
     },
+    nirf: {
+        type: Number
+    },
     instituteType: {
         type: String,
         required: true,
