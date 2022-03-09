@@ -9,6 +9,9 @@ const {
 
 const router= express.Router();
 
+router.get('/', (req, res)=> {
+    res.send('student auth');
+})
 router.get('/initiateAadhaarSession', initiateAadhaarSession);
 
 router.get('/reloadCaptcha', reloadAadhaarCaptcha);
