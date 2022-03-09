@@ -257,7 +257,7 @@ const verifyAadhaar= async (req, res)=> {
     try {
         // create user with the role student
         var obj= _generateUserObject(req.body.username, req.body.password);
-        var [newUser, err1]= await createUserRepo(obj);
+        var [newUser, err1]= await createUser(obj);
         if (err1) {
             console.log("ERROR: ", err1.message);
             return serverErrorResponse(res, err1.message);
@@ -322,7 +322,8 @@ const _generateStudentObject= (name, address, state, userId, gender)=> {
         gender,
         address,
         domicileState: state, 
-        userRef: userId
+        userRef: userId,
+        courseStatus: "ongoing",
     }
 }
 
