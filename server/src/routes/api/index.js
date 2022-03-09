@@ -6,5 +6,6 @@ router.use('/institute', require('./institutes.route'));
 router.use('/agency', require('./agencies.route'));
 router.use('/student', require('./student.route'));
 router.use('/opportunity', require('./opportunities.route'));
+router.use('/dashboard', require('./dashboard.route'));
 
 module.exports= router;
