@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import InputField2 from "../InputField/InputField2";
 const icons = ["user", "Billing", "group", "feedback", "logout"];
-const options = ["Account", "Billing", "Team", "Feedback", "Logout"];
+const options = ["Logout"];
 
 // const icons = ['user', 'group', 'feedback', 'logout'];
 // const options = ['Account', 'Team', 'Feedback', 'Logout'];
@@ -126,7 +126,7 @@ export default function DashboardHeader({ name, profileImage }) {
         break;
       case "4":
         localStorage.clear();
-        //history.replace("/");
+        history.replace("/");
         break;
       default:
         break;
@@ -273,23 +273,23 @@ export default function DashboardHeader({ name, profileImage }) {
                 }}
                 disableScrollLock={true}
               >
-                {options.map((option, _id) => (
-                  <div className="inline-flex" key={_id}>
-                    <MenuItem
-                      key={option}
-                      data-my-value={_id}
-                      // selected={option === 'Make Owner'}
-                      onClick={handleItemSelect}
-                    >
-                      {/*  <Icon
+                <div className="inline-flex">
+                  <MenuItem
+                    key={"Logout"}
+                    // selected={option === 'Make Owner'}
+                    onClick={() => {
+                      localStorage.clear();
+                      history.push("/");
+                    }}
+                  >
+                    {/*  <Icon
                         className="mr-2 text-gray"
                         name={icons[_id]}
                         size="bigger"
                     />*/}
-                      <span className="font-sans my-2 text-16">{option}</span>
-                    </MenuItem>
-                  </div>
-                ))}
+                    <span className="font-sans my-2 text-16">Logout</span>
+                  </MenuItem>
+                </div>
               </Menu>
             </div>
           </div>

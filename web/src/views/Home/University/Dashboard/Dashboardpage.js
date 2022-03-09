@@ -19,7 +19,9 @@ const Dashboardpage = () => {
         <div className="grid grid-cols-2">
           <div>
             <div className="bg-hcolor w-520 h-262">
-              <div className="text-28 mt-2 ml-5 font-bold">University Name</div>
+              <div className="text-28 mt-2 ml-5 font-bold">
+                Thapar University
+              </div>
               <div className="flex flex-col gap-5">
                 <div className="grid grid-cols-3   ">
                   <div className="mt-4 ml-4">
@@ -29,7 +31,7 @@ const Dashboardpage = () => {
                     <div className="text-21 font-bold">Students</div>
                   </div>
                   <div className="mt-6">
-                    <div className="text-21 font-bold">XXXXX</div>
+                    <div className="text-21 font-bold">10</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3   ">
@@ -40,7 +42,7 @@ const Dashboardpage = () => {
                     <div className="text-21 font-bold">Female</div>
                   </div>
                   <div className="mt-6">
-                    <div className="text-21 font-bold">XXXXX</div>
+                    <div className="text-21 font-bold">3</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3   ">
@@ -51,7 +53,7 @@ const Dashboardpage = () => {
                     <div className="text-21 font-bold">Male</div>
                   </div>
                   <div className="mt-6">
-                    <div className="text-21 font-bold">XXXXX</div>
+                    <div className="text-21 font-bold">7</div>
                   </div>
                 </div>
               </div>
@@ -62,127 +64,7 @@ const Dashboardpage = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16">
-        <div className="text-48 font-bold text-primary  text-center">
-          Insights
-        </div>
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <div className="text-primary mb-2 text-21">Gender</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-        <div>
-          <div className="text-primary mb-2 text-21">Category</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <div className="text-primary mb-2 text-21">Income</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-        <div>
-          <div className="text-primary mb-2 text-21">Grades</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <div className="text-primary mb-2 text-21">Education Level</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-        <div>
-          <div className="text-primary mb-2 text-21">Stream</div>
-          <Dropdowncomponent
-            change={Agency}
-            setchange={setAgency}
-            arr={arr}
-            text={"--Select One --"}
-          />
-        </div>
-      </div>
-      <br />
-      <br />
-      <div className="bg-hcolor border-2 border-hcolor">
-        <TableContainer>
-          <Table>
-            <TableHead className="bg-coolGray">
-              <TableCell>#</TableCell>
-              <TableCell align="center">State</TableCell>
-              <TableCell align="center">Female</TableCell>
-              <TableCell align="center">Male</TableCell>
-              <TableCell align="center">Total</TableCell>
-            </TableHead>
 
-            <TableBody>
-              <TableRow
-                style={{ cursor: "pointer" }}
-                //  onClick={(e) => GoToEdit(row.id)}
-              >
-                <TableCell component="th" scope="row">
-                  1
-                </TableCell>
-
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-              </TableRow>
-              <TableRow
-                style={{ cursor: "pointer" }}
-                //  onClick={(e) => GoToEdit(row.id)}
-              >
-                <TableCell component="th" scope="row">
-                  1
-                </TableCell>
-
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
       <br />
       <br />
       <br />

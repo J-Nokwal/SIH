@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "../../../../assets/Image.png";
 import MainButton from "../../../../components/Buttons/mainbutton/MainButton";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 const Opportunitiesedit = () => {
+  const { id } = useParams();
+  const [type, settype] = useState("");
+  const [title, settitle] = useState("");
+  const [dead, setdead] = useState("");
+  const [posted, setposted] = useState("");
+  const [desc, setdesc] = useState("");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get(
+        `http://13.232.59.144/api/opportunity/viewOpportunity/${id}`,
+
+        {
+          headers: { authorization: token },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        settype(res.data.data.type);
+        settitle(res.data.data.title);
+        setposted(res.data.data.organization);
+        setdead(res.data.data.applicationDeadline);
+        setdesc(res.data.data.description);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       {" "}
@@ -13,18 +44,16 @@ const Opportunitiesedit = () => {
                 <img className="w-124 h-124" src={Image} />
               </div>
               <div className="mt-4">
-                <div className="text-24 font-bold">Application Received </div>
+                <div className="text-24 font-bold">{type} </div>
               </div>
             </div>
 
             <div>
-              <div className="text-24 font-bold text-primary">
-                Notice Title:One
-              </div>
+              <div className="text-24 font-bold text-primary">{title}</div>
 
               <div className="flex flex-col gap-4 mt-7 text-newblue">
-                <div className="text-16 font-bold">Posted by : Society</div>
-                <div className="text-16 font-bold">Date : XXXXX</div>
+                <div className="text-16 font-bold">Posted by : {posted}</div>
+                <div className="text-16 font-bold">Date : {dead}</div>
               </div>
             </div>
             <div className="ml-124 mt-7">
@@ -34,18 +63,7 @@ const Opportunitiesedit = () => {
             </div>
           </div>
           <div className="mt-10 mx-124">
-            <div className="text-zinc-400 ">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s. Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s..... Lorem
-              Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s..... Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s.....
-            </div>
+            <div className="text-zinc-400 break-all">{desc}</div>
             <div className="flex flex-row gap-124 my-16">
               <div>
                 <MainButton text={"Download CSV"} />

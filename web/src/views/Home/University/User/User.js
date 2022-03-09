@@ -39,22 +39,22 @@ const User = () => {
                   1
                 </TableCell>
 
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
+                <TableCell align="center">Pranav</TableCell>
+                <TableCell align="center">Pranav@thapar.edu</TableCell>
+                <TableCell align="center">*******</TableCell>
               </TableRow>
               <TableRow
                 style={{ cursor: "pointer" }}
                 //  onClick={(e) => GoToEdit(row.id)}
               >
                 <TableCell component="th" scope="row">
-                  1
+                  2
                 </TableCell>
 
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
+                <TableCell align="center">Harsh</TableCell>
+                <TableCell align="center">harsh@thapar.edu</TableCell>
 
-                <TableCell align="center">wkjaesdfhskjad</TableCell>
+                <TableCell align="center">*******</TableCell>
               </TableRow>
             </TableBody>
           </Table>
