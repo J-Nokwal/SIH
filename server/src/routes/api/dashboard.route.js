@@ -34,7 +34,6 @@ router.post('/studentInsights', async(req, res)=> {
         // filter: {category: "GEN", currentCGPA: {$gte: 8.0}}
         // get the number of students in each domicileState with male female distinction on the basis of filter
         
-
     } catch (error) {
         
     }
