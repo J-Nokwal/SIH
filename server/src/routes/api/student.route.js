@@ -8,22 +8,26 @@ const {
     thirdPartyIdentity,
 }= require('../../controllers/api/student.controller');
 
+const {
+    verifyStudent
+}= require('../../middlewares/authorization.middleware')
+
 const router= express.Router();
 
-router.get('/me', getInfo); // -_id, -__v, -password
+router.get('/me', verifyStudent, getInfo); // -_id, -__v, -password
 
-router.get('/myOpportunities', myOpportunities); 
+router.get('/myOpportunities', verifyStudent, myOpportunities); 
 
-router.get('/applyForOpportunity/:id', applyForOpportunity); // opportunity id
+router.get('/applyForOpportunity/:id', verifyStudent, applyForOpportunity); // opportunity id
 
-router.post('/setUniverisity', setUniverisity); // university id, roll number
+router.post('/setInstitute', verifyStudent, setUniverisity); // university id, roll number
 
 // low priority
 router.post('/changePassword'); // current and new password
 
-router.post('/updateProfile', updateUserInfo); // password and primary info (name, dob, address : coming from aadhaar) change not allowed
+router.post('/updateProfile', verifyStudent, updateUserInfo); // password and primary info (name, dob, address : coming from aadhaar) change not allowed
 
-router.post('/thirdPartyIdentity', thirdPartyIdentity);
+router.post('/thirdPartyIdentity', verifyStudent, thirdPartyIdentity);
 
 module.exports= router;
 

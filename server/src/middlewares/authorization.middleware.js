@@ -24,6 +24,8 @@ const verifyAdmin= (req, res, next)=> {
             console.log('Forbidden');
             return forbiddenErrorResponse(res, "you are not athorized to access this route")
         }
+        req.user= decoded;
+
         console.log('Authorized!');
         next();
     } catch (error) {
@@ -48,6 +50,7 @@ const verifyAgencyAdmin= (req, res, next)=> {
             console.log('Forbidden');
             return forbiddenErrorResponse(res, "you are not athorized to access this route")
         }
+        req.user= decoded;
         console.log('Authorized!');
         next();
     } catch (error) {
@@ -72,6 +75,7 @@ const verifyInstituteAdmin= (req, res, next)=> {
             console.log('Forbidden');
             return forbiddenErrorResponse(res, "you are not athorized to access this route")
         }
+        req.user= decoded;
         console.log('Authorized!');
         next();
     } catch (error) {
@@ -96,6 +100,8 @@ const verifyInstituteUser= (req, res, next)=> {
             console.log('Forbidden');
             return forbiddenErrorResponse(res, "you are not athorized to access this route")
         }
+        req.user= decoded;
+
         console.log('Authorized!');
         next();
     } catch (error) {
@@ -120,6 +126,8 @@ const verifyStudent= (req, res, next)=> {
             console.log('Forbidden');
             return forbiddenErrorResponse(res, "you are not athorized to access this route")
         }
+        req.user= decoded;
+
         console.log('Authorized!');
         next();
     } catch (error) {

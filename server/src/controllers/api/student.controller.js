@@ -14,6 +14,10 @@ const {
 const {
     updateOpportunity,
 }= require('../../repository/opportunity.repository')
+const {
+    successResponse,
+    serverErrorResponse
+}= require('../../utils/response')
 
 const updateUserInfo= async (req, res) => {
     try {
@@ -30,8 +34,10 @@ const updateUserInfo= async (req, res) => {
 
 const getInfo= async (req, res) => {
     try {
-        var id= req.user.id
+        var id= req.user.studentId;
+        console.log('Req user', req.user)
         var [user, err]= await getStudentByQuery({ _id: id });
+        console.log(user);
         return successResponse(res, 'User info listed successfully', user);
     } catch (error) {
         console.log(`Error : ${error.message}`);
@@ -43,7 +49,12 @@ const setUniverisity= async (req, res) => {
     try {
         // verify with university
         // update student : university, roll number
-        var [updated, err]= await updateStudent({universityRef: req.body.universityId, rollNumber: req.body.rollNumber}, {personalEmail: req.body.personalEmail});
+        var [updated, err]= await updateStudent({
+            universityRef: req.body.universityId, 
+            rollNumber: req.body.rollNumber
+        }, {
+            _id: req.user.studentId
+        });
         if (err) {
             return serverErrorResponse(res, err.message);
         }
@@ -52,9 +63,10 @@ const setUniverisity= async (req, res) => {
             tokenPayload: {
                 instituteRef: req.body.universityId, 
                 rollNumber: req.body.rollNumber, 
-                studentId: updated._id
+                studentId: updated._id,
+                userId: req.user.userId
             }
-        }, {_id: req.user.id});
+        }, {_id: req.user.userId});
         if (err2) {
             return serverErrorResponse(res, err2.message);
         }
