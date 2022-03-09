@@ -7,35 +7,35 @@ module.exports= {
         });
     },
     serverErrorResponse: (res, message)=> {
-        return res.status(500).json({
+        return res.status(200).json({
             error: true,
             message: message,
             data: {}
         });
     },
     badRequestErrorResponse: (res, message)=> {
-        return res.status(400).json({
+        return res.status(200).json({
             error: true,
             message: message,
             data: {}
         });
     },
     notFoundErrorResponse: (res, message)=> {
-        return res.status(404).json({
+        return res.status(200).json({
             error: true,
             message: message,
             data: {}
         });
     },
     unauthorizedErrorResponse: (res, message)=> {
-        return res.status(401).json({
+        return res.status(200).json({
             error: true,
             message: message,
             data: {}
         });
     },
     forbiddenErrorResponse: (res, message)=> {
-        return res.status(403).json({
+        return res.status(200).json({
             error: true,
             message: message,
             data: {}
