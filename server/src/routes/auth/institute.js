@@ -1,7 +1,7 @@
 const express= require('express');
 const {
     signin
-}= require('../../controllers/auth/agency');
+}= require('../../controllers/auth/institue');
 
 const router= express.Router();
 
