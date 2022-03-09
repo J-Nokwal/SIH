@@ -10,5 +10,6 @@
       "role": "agency"
     },
     "role": "agency",
-    "isVerified": true
+    "isVerified": true,
+    "currentCGPA": {"$gte": 8.0}
 }

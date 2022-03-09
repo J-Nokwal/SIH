@@ -6,6 +6,7 @@ const {
     unauthorizedErrorResponse,
     forbiddenErrorResponse,
     serverErrorResponse,
+    badRequestErrorResponse
 }= require('../utils/response')
 
 const verifyAdmin= (req, res, next)=> {
@@ -13,7 +14,7 @@ const verifyAdmin= (req, res, next)=> {
         var {authorization: token}= req.headers;
         if (!token) {
             console.log("authorization header missing");
-            return badRequestResponse(res, "authorization header missing")
+            return badRequestErrorResponse(res, "authorization header missing")
         }
         var decoded= verifyToken(token);
         if (!decoded) {
@@ -39,7 +40,7 @@ const verifyAgencyAdmin= (req, res, next)=> {
         var {authorization: token}= req.headers;
         if (!token) {
             console.log("authorization header missing");
-            return badRequestResponse(res, "authorization header missing")
+            return badRequestErrorResponse(res, "authorization header missing")
         }
         var decoded= verifyToken(token);
         if (!decoded) {
@@ -64,7 +65,7 @@ const verifyInstituteAdmin= (req, res, next)=> {
         var {authorization: token}= req.headers;
         if (!token) {
             console.log("authorization header missing");
-            return badRequestResponse(res, "authorization header missing")
+            return badRequestErrorResponse(res, "authorization header missing")
         }
         var decoded= verifyToken(token);
         if (!decoded) {
@@ -89,7 +90,7 @@ const verifyInstituteUser= (req, res, next)=> {
         var {authorization: token}= req.headers;
         if (!token) {
             console.log("authorization header missing");
-            return badRequestResponse(res, "authorization header missing")
+            return badRequestErrorResponse(res, "authorization header missing")
         }
         var decoded= verifyToken(token);
         if (!decoded) {
@@ -115,7 +116,7 @@ const verifyStudent= (req, res, next)=> {
         var {authorization: token}= req.headers;
         if (!token) {
             console.log("authorization header missing");
-            return badRequestResponse(res, "authorization header missing")
+            return badRequestErrorResponse(res, "authorization header missing")
         }
         var decoded= verifyToken(token);
         if (!decoded) {

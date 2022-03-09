@@ -16,6 +16,7 @@ router.get('/govtInsights', async(req, res)=> {
         var states= await Institute.aggregate([
             { $group: { _id: '$state', count: { $sum: 1 } } }
         ]);
+        console.log(states);
         var stateCount= states.length;
         return successResponse(res, 'Govt insights listed successfully', {
             studentCount,
@@ -24,6 +25,18 @@ router.get('/govtInsights', async(req, res)=> {
         })
     } catch (error) {
         return serverErrorResponse(res, error.message);
+    }
+})
+
+router.post('/studentInsights', async(req, res)=> {
+    try {
+        var filter= req.body.filter;
+        // filter: {category: "GEN", currentCGPA: {$gte: 8.0}}
+        // get the number of students in each domicileState with male female distinction on the basis of filter
+        
+
+    } catch (error) {
+        
     }
 })
 
