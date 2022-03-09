@@ -18,7 +18,9 @@ const {
 
 const signin= async (req, res)=> {
     try {
+        console.log("IN")
         var {username, password}= req.body;
+        console.log(username, password)
         var [user, err]= await getUserByQuery({username});
         if (err || !user) {
             return notFoundErrorResponse(res, 'Institute not found');

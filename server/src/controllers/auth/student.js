@@ -36,6 +36,7 @@ const signin= async (req, res)=> {
         if (err || !user) {
             return notFoundErrorResponse(res, 'Student not found');
         }
+        console.log('**** User was found ****');
         // var isValid= await comparePassword(password, user.password);
         // if (!isValid) {
         //     return unauthorizedErrorResponse(res, 'Invalid password');
