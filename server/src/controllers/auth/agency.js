@@ -23,14 +23,15 @@ const signin= async (req, res)=> {
     try {
         var {username, password}= req.body;
         var [user, err]= await getUserByQuery({username});
-        if (err) {
+        if (err || !user) {
             return notFoundErrorResponse(res, 'Agency not found');
         }
         // var isValid= await comparePassword(password, user.password);
         // if (!isValid) {
         //     return unauthorizedErrorResponse(res, 'Invalid password');
         // }
-        if (user.password != req.body.password) {
+        console.log(user)
+        if (user.password != password) {
             return unauthorizedErrorResponse(res, 'Invalid password');
         }
         var token= signToken(user.tokenPayload);

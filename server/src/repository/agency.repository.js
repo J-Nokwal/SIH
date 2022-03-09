@@ -3,7 +3,7 @@ const Agency= require('../models/agency');
 // CRUD
 const createAgency= async (agency)=> {
     try {
-        var newAgency= Agency.create(agency);
+        var newAgency= await Agency.create(agency);
         return [JSON.parse(JSON.stringify(newAgency)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -13,7 +13,7 @@ const createAgency= async (agency)=> {
 
 const getAgenciesByQuery= async (query= {})=> {
     try {
-        var agencies= Agency.find(query);
+        var agencies= await Agency.find(query);
         return [JSON.parse(JSON.stringify(agencies)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -23,7 +23,7 @@ const getAgenciesByQuery= async (query= {})=> {
 
 const getAgencyByQuery= async (query= {})=> {
     try {
-        var agency= Agency.findOne(query);
+        var agency= await Agency.findOne(query);
         return [JSON.parse(JSON.stringify(agency)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -33,7 +33,7 @@ const getAgencyByQuery= async (query= {})=> {
 
 const updateAgency= async (agency, query= {})=> {
     try {
-        var updatedAgency= Agency.findOneAndUpdate(query, agency, {new: true});
+        var updatedAgency= await Agency.findOneAndUpdate(query, agency, {new: true});
         return [JSON.parse(JSON.stringify(updatedAgency)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -43,7 +43,7 @@ const updateAgency= async (agency, query= {})=> {
 
 const deleteAgency= async (query= {})=> {
     try {
-        var deletedAgency= Agency.findOneAndDelete(query);
+        var deletedAgency= await Agency.findOneAndDelete(query);
         return [JSON.parse(JSON.stringify(deletedAgency)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);

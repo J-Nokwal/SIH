@@ -4,7 +4,7 @@ const Institute= require('../models/institute');
 
 const createInstitute= async (institute)=> {
     try {
-        var newInstitute= Institute.create(institute);
+        var newInstitute= await Institute.create(institute);
         return [JSON.parse(JSON.stringify(newInstitute)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -14,7 +14,7 @@ const createInstitute= async (institute)=> {
 
 const getInstitutesByQuery= async (query= {})=> {
     try {
-        var institutes= Institute.find(query);
+        var institutes= await Institute.find(query);
         return [JSON.parse(JSON.stringify(institutes)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -24,7 +24,7 @@ const getInstitutesByQuery= async (query= {})=> {
 
 const getInstituteByQuery= async (query= {})=> {
     try {
-        var institute= Institute.findOne(query);
+        var institute= await Institute.findOne(query);
         return [JSON.parse(JSON.stringify(institute)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -34,7 +34,7 @@ const getInstituteByQuery= async (query= {})=> {
 
 const updateInstitute= async (institute, query= {})=> {
     try {
-        var updatedInstitute= Institute.findOneAndUpdate(query, institute, {new: true});
+        var updatedInstitute= await Institute.findOneAndUpdate(query, institute, {new: true});
         return [JSON.parse(JSON.stringify(updatedInstitute)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -44,7 +44,7 @@ const updateInstitute= async (institute, query= {})=> {
 
 const deleteInstitute= async (query= {})=> {
     try {
-        var deletedInstitute= Institute.findOneAndDelete(query);
+        var deletedInstitute= await Institute.findOneAndDelete(query);
         return [JSON.parse(JSON.stringify(deletedInstitute)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);

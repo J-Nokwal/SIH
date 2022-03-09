@@ -4,7 +4,7 @@ const Student= require('../models/student');
 
 const createStudent= async (student)=> {
     try {
-        var newStudent= Student.create(student);
+        var newStudent= await Student.create(student);
         return [JSON.parse(JSON.stringify(newStudent)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -14,7 +14,7 @@ const createStudent= async (student)=> {
 
 const getStudentsByQuery= async (query= {})=> {
     try {
-        var students= Student.find(query);
+        var students= await Student.find(query);
         return [JSON.parse(JSON.stringify(students)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -24,7 +24,7 @@ const getStudentsByQuery= async (query= {})=> {
 
 const getStudentByQuery= async (query= {})=> {
     try {
-        var student= Student.findOne(query);
+        var student= await Student.findOne(query);
         return [JSON.parse(JSON.stringify(student)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -34,7 +34,7 @@ const getStudentByQuery= async (query= {})=> {
 
 const updateStudent= async (student, query= {})=> {
     try {
-        var updatedStudent= Student.findOneAndUpdate(query, student, {new: true});
+        var updatedStudent= await Student.findOneAndUpdate(query, student, {new: true});
         return [JSON.parse(JSON.stringify(updatedStudent)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -44,7 +44,7 @@ const updateStudent= async (student, query= {})=> {
 
 const deleteStudent= async (query= {})=> {
     try {
-        var deletedStudent= Student.findOneAndDelete(query);
+        var deletedStudent= await Student.findOneAndDelete(query);
         return [JSON.parse(JSON.stringify(deletedStudent)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -55,7 +55,7 @@ const deleteStudent= async (query= {})=> {
 const getStudentByQueryPopulate= async (query= {})=> {
     try {
         // populate enrolledOpportunities, starredOpportunities
-        var student= Student.findOne(query).populate('enrolledOpportunities').populate('starredOpportunities');
+        var student= await Student.findOne(query).populate('enrolledOpportunities').populate('starredOpportunities');
         return [JSON.parse(JSON.stringify(student)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);

@@ -1,0 +1,14 @@
+{
+    "_id": {
+        "$oid": "62287a05064b64aa52d22a02"
+    },
+    "username": "aicte_admin@gov.in",
+    "password": "123456",
+    "payloadToken": {
+      "agency": "AICTE",
+      "userId": "62287a05064b64aa52d22a02",
+      "role": "agency"
+    },
+    "role": "agency",
+    "isVerified": true
+}

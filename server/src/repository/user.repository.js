@@ -4,7 +4,7 @@ const User= require('../models/user');
 
 const createUser= async (user)=> {
     try {
-        var newUser= User.create(user);
+        var newUser= await User.create(user);
         return [JSON.parse(JSON.stringify(newUser)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -14,7 +14,7 @@ const createUser= async (user)=> {
 
 const getUsersByQuery= async (query= {})=> {
     try {
-        var users= User.find(query);
+        var users= await User.find(query);
         return [JSON.parse(JSON.stringify(users)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -24,7 +24,8 @@ const getUsersByQuery= async (query= {})=> {
 
 const getUserByQuery= async (query= {})=> {
     try {
-        var user= User.findOne(query);
+        var user= await User.findOne(query);
+        console.log(user);
         return [JSON.parse(JSON.stringify(user)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -34,7 +35,7 @@ const getUserByQuery= async (query= {})=> {
 
 const updateUser= async (user, query= {})=> {
     try {
-        var updatedUser= User.findOneAndUpdate(query, user, {new: true});
+        var updatedUser= await User.findOneAndUpdate(query, user, {new: true});
         return [JSON.parse(JSON.stringify(updatedUser)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -44,7 +45,7 @@ const updateUser= async (user, query= {})=> {
 
 const deleteUser= async (query= {})=> {
     try {
-        var deletedUser= User.findOneAndDelete(query);
+        var deletedUser= await User.findOneAndDelete(query);
         return [JSON.parse(JSON.stringify(deletedUser)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);

@@ -4,7 +4,7 @@ const Opportunity = require('../models/opportunity');
 
 const createOpportunity = async (opportunity) => {
     try {
-        var newOpportunity = Opportunity.create(opportunity);
+        var newOpportunity = await Opportunity.create(opportunity);
         return [JSON.parse(JSON.stringify(newOpportunity)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -14,7 +14,7 @@ const createOpportunity = async (opportunity) => {
 
 const getOpportunitiesByQuery = async (query = {}) => {
     try {
-        var opportunities = Opportunity.find(query);
+        var opportunities = await Opportunity.find(query);
         return [JSON.parse(JSON.stringify(opportunities)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -24,7 +24,7 @@ const getOpportunitiesByQuery = async (query = {}) => {
 
 const getOpportunityByQuery = async (query = {}) => {
     try {
-        var opportunity = Opportunity.findOne(query);
+        var opportunity = await Opportunity.findOne(query);
         return [JSON.parse(JSON.stringify(opportunity)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -34,7 +34,7 @@ const getOpportunityByQuery = async (query = {}) => {
 
 const updateOpportunity = async (opportunity, query = {}) => {
     try {
-        var updatedOpportunity = Opportunity.findOneAndUpdate(query, opportunity, { new: true });
+        var updatedOpportunity = await Opportunity.findOneAndUpdate(query, opportunity, { new: true });
         return [JSON.parse(JSON.stringify(updatedOpportunity)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -44,7 +44,7 @@ const updateOpportunity = async (opportunity, query = {}) => {
 
 const deleteOpportunity = async (query = {}) => {
     try {
-        var deletedOpportunity = Opportunity.findOneAndDelete(query);
+        var deletedOpportunity = await Opportunity.findOneAndDelete(query);
         return [JSON.parse(JSON.stringify(deletedOpportunity)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
@@ -54,7 +54,7 @@ const deleteOpportunity = async (query = {}) => {
 
 const getOpportunityByQueryPopulate = async (query = {}) => {
     try {
-        var opportunity = Opportunity.findOne(query).populate('applicants');
+        var opportunity = await Opportunity.findOne(query).populate('applicants');
         return [JSON.parse(JSON.stringify(opportunity)), null];
     } catch (error) {
         console.log(`Server error : ${error.message}`);
