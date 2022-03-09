@@ -34,7 +34,7 @@ const signin= async (req, res)=> {
         var {username, password}= req.body;
         var [user, err]= await getUserByQuery({username});
         if (err) {
-            return notFoundErrorResponse(res, 'Agency not found');
+            return notFoundErrorResponse(res, 'Student not found');
         }
         // var isValid= await comparePassword(password, user.password);
         // if (!isValid) {
