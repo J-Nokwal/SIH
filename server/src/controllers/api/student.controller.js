@@ -37,6 +37,7 @@ const getInfo= async (req, res) => {
         var id= req.user.studentId;
         console.log('Req user', req.user)
         var [user, err]= await getStudentByQuery({ _id: id });
+        user= {...user, personalEmail: req.user.username};
         console.log(user);
         return successResponse(res, 'User info listed successfully', user);
     } catch (error) {
