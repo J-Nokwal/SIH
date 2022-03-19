@@ -31,10 +31,25 @@ class SignInScreen extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: kColors.purpleLight,
                 ),
-                child: const Center(child: Text("Logo")),
+                child: Center(
+                    child: Column(
+                  children: [
+                    Image.asset(
+                      "assets/images/ChitraGupta.png",
+                      height: 200,
+                    ),
+
+                    // const SizedBox(height: 20),
+                    // Image.asset(
+                    //   "assets/images/DarkName.png",
+                    //   height: 10,
+                    // )
+                  ],
+                )),
               ),
               const SizedBox(height: 30),
-              const Text("Product Name", style: TextStyle(fontSize: 30)),
+              // const Text("Product Name", style: TextStyle(fontSize: 30)),
+              Image.asset("assets/images/DarkName.png"),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),

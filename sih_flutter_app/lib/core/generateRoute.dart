@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_flutter_app/features/common/widgets/splashScreen.dart';
 import 'package:sih_flutter_app/features/signin_signup/Screen/otpScreen.dart';
 import 'package:sih_flutter_app/features/signin_signup/Screen/signinScreen.dart';
+import 'package:sih_flutter_app/features/signin_signup/models/sudentsInformationPost.dart';
 
 import '../features/applicationForm/screens/applicationFormScreen.dart';
 import '../features/homepage/screens/homeScreen.dart';
@@ -13,7 +14,7 @@ class Routers {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case '/splashScreen':
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case '/signinScreen':
@@ -21,13 +22,19 @@ class Routers {
       case '/signUpScreen':
         return MaterialPageRoute(builder: (_) => SignUpScreen());
       case '/otpScreen':
-        return MaterialPageRoute(builder: (_) => OtpScreen());
+        return MaterialPageRoute(
+            builder: (_) => OtpScreen(
+                  arguments: settings.arguments as List<TextEditingController>,
+                ));
       case '/chooseCollegeScreen':
         return MaterialPageRoute(builder: (_) => ChooseCollegeScreen());
       case '/entreRollNoScreen':
         return MaterialPageRoute(builder: (_) => EntreRollNoScreen());
       case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(
+            builder: (_) => HomePage(
+                  sudentsInformationGet: settings.arguments as SudentsInformationGet,
+                ));
       case '/application':
         return MaterialPageRoute(builder: (_) => ApplicationFormScreen());
       default:

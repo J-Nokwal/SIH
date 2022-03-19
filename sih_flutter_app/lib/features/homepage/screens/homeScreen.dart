@@ -1,38 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:sih_flutter_app/core/colores.dart';
+import 'package:sih_flutter_app/core/injection.dart';
+import 'package:sih_flutter_app/features/homepage/bloc/opportunitiesBloc/opportunities_bloc.dart';
+import 'package:sih_flutter_app/features/homepage/models/listopportunitiesResponse.dart';
 import 'package:sih_flutter_app/features/homepage/screens/drawer.dart';
-
-import '../bloc/bloc/aaa_bloc.dart';
+import 'package:intl/date_symbol_data_custom.dart';
+import '../../signin_signup/models/sudentsInformationPost.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final SudentsInformationGet sudentsInformationGet;
+  const HomePage({Key? key, required this.sudentsInformationGet}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kColors.whitePurple,
-      drawer: SideDrawer(),
-      appBar: AppBar(
+    return BlocProvider(
+      create: (context) => getIt<OpportunitiesBloc>()..add(OpportunitiesEvent.loadOpportunities()),
+      child: Scaffold(
         backgroundColor: kColors.whitePurple,
-        // actionsIconTheme: IconThemeData(color: kColors.purpleDark),
-        elevation: 0,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: kColors.purpleDark,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
+        drawer: SideDrawer(
+          sudentsInformationGet: sudentsInformationGet,
         ),
+        appBar: AppBar(
+          backgroundColor: kColors.whitePurple,
+          // actionsIconTheme: IconThemeData(color: kColors.purpleDark),
+          elevation: 0,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: kColors.purpleDark,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
+        ),
+        body: _HomeBody(),
       ),
-      body: _HomeBody(),
     );
   }
 }
@@ -94,8 +104,9 @@ class _HomeBodyState extends State<_HomeBody> {
                       padding: const EdgeInsets.only(bottom: 40),
                       child: Image.asset(
                         "assets/images/homeScreenImage.png",
-                        fit: BoxFit.none,
-                        height: 300,
+                        // fit: BoxFit.fitWidth,
+                        // height: 300,
+                        width: 300,
                       ),
                     )),
                 PageView(
@@ -114,22 +125,29 @@ class _HomeBodyState extends State<_HomeBody> {
                     });
                   },
                   children: [
-                    ListView.builder(
-                        itemCount: 20 + 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == 20) {
-                            return const SizedBox(height: 270);
-                          }
-                          return _HomeCard();
-                        }),
-                    ListView.builder(
-                        itemCount: 20 + 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == 20) {
-                            return const SizedBox(height: 270);
-                          }
-                          return _HomeCard();
-                        }),
+                    BlocBuilder<OpportunitiesBloc, OpportunitiesState>(
+                      builder: (context, state) {
+                        return state.map(
+                            loading: (s) => Container(),
+                            loaded: (s) => ListView.builder(
+                                itemCount: s.listopportunitiesResponse.data.length + 1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  print(index);
+                                  if (index == s.listopportunitiesResponse.data.length) {
+                                    return const SizedBox(height: 270);
+                                  } else {
+                                    return _HomeCard(data: s.listopportunitiesResponse.data[index]);
+                                  }
+                                }));
+                      },
+                    ),
+                    Container(
+                      child: Center(
+                          child: Text(
+                        "Comming Soon!",
+                        style: TextStyle(color: kColors.purpleDark, fontSize: 24),
+                      )),
+                    ),
                   ],
                 ),
               ],
@@ -158,9 +176,12 @@ class _HomeBodyState extends State<_HomeBody> {
 }
 
 class _HomeCard extends StatelessWidget {
-  const _HomeCard({
+  final Datum data;
+  _HomeCard({
     Key? key,
+    required this.data,
   }) : super(key: key);
+  final DateFormat formatter = DateFormat('dd-MMMM-yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -186,11 +207,11 @@ class _HomeCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Internship - NITI Aayog",
+                          data.title,
                           style: TextStyle(fontSize: 18, color: kColors.purpleDark),
                         ),
                         Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipisc ing elit, sed do eiusmod tempor inci",
+                          data.title,
                           maxLines: 3,
                           softWrap: true,
                         )
@@ -207,9 +228,10 @@ class _HomeCard extends StatelessWidget {
                   ),
                   // SizedBox(width: 5),
                 ]),
+                const SizedBox(height: 10),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text("10th March 11:45:29pm"),
+                  child: Text(formatter.format(data.applicationDeadline)),
                 )
               ],
             ),

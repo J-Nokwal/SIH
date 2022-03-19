@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sih_flutter_app/core/colores.dart';
 
+import '../../signin_signup/models/sudentsInformationPost.dart';
+
 class SideDrawer extends StatelessWidget {
+  final SudentsInformationGet sudentsInformationGet;
+
+  const SideDrawer({Key? key, required this.sudentsInformationGet}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -9,17 +14,21 @@ class SideDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Pushpa"),
-            accountEmail: Text("puspa@gmail.com"),
+            accountName: Text(
+                sudentsInformationGet.data.name!.first.toString() + sudentsInformationGet.data.name!.last.toString()),
+            accountEmail: Text(sudentsInformationGet.data.personalEmail!),
             currentAccountPicture: Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: kColors.purpleLight),
               child: Center(),
             ),
             otherAccountsPictures: [
-              Center(
-                child: Image.asset(
-                  "assets/images/qrhigh.png",
-                  fit: BoxFit.cover,
+              InkWell(
+                // onTap: () => Navigator.of(context).pushNamed("/qr"),
+                child: Center(
+                  child: Image.asset(
+                    "assets/images/qrhigh.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               )
             ],
@@ -61,10 +70,11 @@ class SideDrawer extends StatelessWidget {
               shape: BoxShape.circle,
               color: kColors.purpleLight,
             ),
-            child: const Center(child: Text("Logo")),
+            child: Center(child: Image.asset("assets/images/ChitraGupta.png")),
           ),
           const SizedBox(height: 30),
-          Text("Product Name", style: TextStyle(fontSize: 30, color: kColors.whitePurple)),
+          Image.asset("assets/images/Light Name.png"),
+          // Text("Product Name", style: TextStyle(fontSize: 30, color: kColors.whitePurple)),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

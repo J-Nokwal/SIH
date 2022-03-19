@@ -31,7 +31,7 @@ class C {
 @module
 abstract class RegisterModulesss {
   @lazySingleton
-  Dio get dio => Dio(); // construct it the way you want
+  Dio get dio => Dio(BaseOptions(baseUrl: "http://13.232.59.144")); // construct it the way you want
   @lazySingleton
   Stream<ConnectivityResult> get connectivityResult => Connectivity().onConnectivityChanged;
 }
